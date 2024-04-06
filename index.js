@@ -33,10 +33,8 @@ server.listen(PORT,()=>{
 })
 })
 .catch((error)=>{console.log(error);})
-io.removeAllListeners('connection'); // unnecassary  but just in case
 io.on('connection', (socket) => {
     console.log('User connected');
-    socket.removeAllListeners('sendMessage'); // unnecassary  but just in case
     socket.on('sendMessage', async (data) => {
       try {
         const { message,username } = data;
