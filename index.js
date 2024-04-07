@@ -1,16 +1,16 @@
 const express = require('express')
 const http = require('http');
-const socketIo = require('socket.io');
+// const socketIo = require('socket.io');
 const cors = require('cors')
 const mongoose = require('mongoose')
 const app = express()
 const server = http.createServer(app);
-const io =  socketIo(server, {
-    cors: {
-      origin: true,
-      methods:['GET','POST']
-    }
-  })
+// const io =  socketIo(server, {
+//     cors: {
+//       origin: true,
+//       methods:['GET','POST']
+//     }
+//   })
 app.use(cors({
     origin: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -33,18 +33,18 @@ server.listen(PORT,()=>{
 })
 })
 .catch((error)=>{console.log(error);})
-io.on('connection', (socket) => {
-    console.log('User connected');
-    socket.on('sendMessage', async (data) => {
-      try {
-        const { message,username } = data;
-        console.log(message);
-        io.emit('receiveMessage',message,username);
-      } catch (error) {
-        console.error('Error sending message:', error);
-      }
-    });
-});    
+// io.on('connection', (socket) => {
+//     console.log('User connected');
+//     socket.on('sendMessage', async (data) => {
+//       try {
+//         const { message,username } = data;
+//         console.log(message);
+//         io.emit('receiveMessage',message,username);
+//       } catch (error) {
+//         console.error('Error sending message:', error);
+//       }
+//     });
+// });    
 
 app.get('/', (req,res) =>{
     res.status(200).send('Welcome to the ChatRoom')
